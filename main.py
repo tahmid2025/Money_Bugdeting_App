@@ -1,6 +1,7 @@
 from kivy.app import App # this helps run the application 
 from kivy.uix.screenmanager import Screen,ScreenManager
 from kivy.uix.floatlayout import FloatLayout # helps with the layout
+from kivy.uix.button import Button
 
 
 ''' This class is the main starting page for the program
@@ -9,8 +10,12 @@ class StartPage(Screen):
     def __init__(self, **kwargs):
         super(StartPage, self).__init__(**kwargs)
         layout = FloatLayout()  # Switch to FloatLayout for custom positioning
+        self.add_widget(layout)# This diplays the page
 
-        self.add_widget(layout)
+        # Buttons for sign up and login
+        signup_button = Button(text='Sign up page', size_hint=(None, None), size=(200, 50),
+                               pos_hint={'center_x': 0.5, 'y': 0.9})  # Centered horizontally, 50% up from bottom
+        layout.add_widget(signup_button)# this displays the button
      
 
 class MyApp(App):
