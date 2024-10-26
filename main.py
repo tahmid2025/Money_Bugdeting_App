@@ -18,16 +18,26 @@ class StartPage(Screen):
         # Buttons for sign up and login
         signup_button = Button(text='Sign up page', size_hint=(None, None), size=(200, 50),
                                pos_hint={'center_x': 0.5, 'y': 0.9})  # Centeres horizontally, 50% up from bottom
+        signup_button.bind(on_press=self.switch_to_signup)
         layout.add_widget(signup_button)# this displays the button
      
 
         login_button = Button(text='Login page', size_hint=(None, None), size=(200, 50),
                               pos_hint={'center_x': 0.5, 'y': 0.8})  # Centered horizontally, 30% up from bottom
+        login_button.bind(on_press=self.switch_to_login)
         layout.add_widget(login_button)
 
         # Add image at the top
         logo_image = Image(source='logo.jpeg', size_hint=(0.7, 0.7), pos_hint={'center_x': 0.5, 'top': 0.75})
         layout.add_widget(logo_image)
+
+
+
+    def switch_to_signup(self, *args):
+        self.manager.current = 'signup'
+
+    def switch_to_login(self, *args):
+        self.manager.current = 'login'
 
 
 class MyApp(App):
