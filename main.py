@@ -25,6 +25,11 @@ class StartPage(Screen):
                               pos_hint={'center_x': 0.5, 'y': 0.8})  # Centered horizontally, 30% up from bottom
         layout.add_widget(login_button)
 
+        # Add image at the top
+        logo_image = Image(source='logo.jpeg', size_hint=(0.7, 0.7), pos_hint={'center_x': 0.5, 'top': 0.75})
+        layout.add_widget(logo_image)
+
+
 class MyApp(App):
     def build(self):
         # Creates a ScreenManager
