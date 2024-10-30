@@ -32,14 +32,17 @@ class StartPage(Screen):
         layout.add_widget(logo_image)
 
 
-
+    # Switches the Screen to SignupPage
     def switch_to_signup(self, *args):
         self.manager.current = 'signup'
 
+
+    #Swithches the Screen to login
     def switch_to_login(self, *args):
         self.manager.current = 'login'
 
 
+''' This class is created in order to open up my program as a GUI'''
 class MyApp(App):
     def build(self):
         # Creates a ScreenManager
