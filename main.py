@@ -3,6 +3,8 @@ from kivy.uix.screenmanager import Screen,ScreenManager
 from kivy.uix.floatlayout import FloatLayout # helps with the layout
 from kivy.uix.button import Button
 from kivy.uix.image import Image
+from Login import LoginPage
+from SignupPage import SignupPage
 
 
 
@@ -53,6 +55,8 @@ class MyApp(App):
 
         # Add screens
         sm.add_widget(StartPage(name='start'))
+        sm.add_widget(SignupPage(name='signup'))
+        sm.add_widget(LoginPage(name='login'))
         return sm
 
 
