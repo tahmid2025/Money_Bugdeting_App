@@ -6,10 +6,7 @@ from kivy.uix.textinput import TextInput
 from kivy.uix.button import Button
 
 
-
-
-
-
+''' THIS CLASS IS CREATED TO HELP NEW USERS TO SIGN UP TO THE PROGRAM'''
 class SignupPage(Screen):
     def __init__(self, **kwargs):
         super(SignupPage,self).__init__(**kwargs)
