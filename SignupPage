@@ -1,0 +1,12 @@
+from kivy.uix.screenmanager import Screen
+from kivy.uix.floatlayout import FloatLayout
+
+
+
+class SignuPage(Screen):
+    def __init__(self, **kwargs):
+        super(SignuPage,self).__init__(**kwargs)
+
+        layout=FloatLayout()
+
+        self.add_widget(layout)
