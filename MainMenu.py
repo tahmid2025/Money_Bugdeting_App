@@ -24,13 +24,14 @@ class MainMenu(Screen):
 
 
 
+    #This method is used to create a more modern look to the buttons
     def create_modern_button(self, text, pos_hint):
         button = Button(
             text=text,
             size_hint=(None, None),
             size=(300, 75),
             pos_hint=pos_hint,
-            background_normal='',  # Use the custom background
+            background_normal='',  # Uses the custom background
             background_color=(0.2, 0.6, 0.8, 1),  # Button color
             color=(1, 1, 1, 1),  # Text color (white)
             bold=True,
