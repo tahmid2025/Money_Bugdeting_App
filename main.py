@@ -3,6 +3,7 @@ from kivy.uix.screenmanager import Screen,ScreenManager
 from kivy.uix.floatlayout import FloatLayout # helps with the layout
 from kivy.uix.button import Button
 from kivy.uix.image import Image
+from EditFinances import EditFinances
 from Login import LoginPage
 from MainMenu import MainMenu
 from SignupPage import SignupPage
@@ -59,6 +60,9 @@ class MyApp(App):
         sm.add_widget(SignupPage(name='signup'))
         sm.add_widget(LoginPage(name='login'))
         sm.add_widget(MainMenu(name='main_menu'))
+        sm.add_widget(EditFinances(name='Edit_Finances'))
+
+        
 
         return sm
 
