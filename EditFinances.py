@@ -90,6 +90,14 @@ class EditFinances(Screen):
         item = self.selected_item
         amount = self.student_budget_box.text
 
+        #This is used to get the users student iD using the retrived username from the method above
+        self.cursor.execute("SELECT student_id FROM Students WHERE username = ?", (self.username,))
+        result1 = self.cursor.fetchone()
+        
+        # This ensure result1 is not None and extract student_id
+        if result1:
+            student_id = result1[0]  # Get the first element of the tuple
+
 
 
     def create_modern_button(self, text, pos_hint):
