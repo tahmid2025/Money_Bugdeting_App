@@ -68,17 +68,17 @@ class EditFinances(Screen):
         layout.add_widget(Submit_button)
 
 
-
+    # This is used to move the username from the mainmenu to the current screren which will be used later
     def set_username(self,username):
         self.username=username # this hold the value of the username thats been transferred by the mainmenu
 
-
+    # This function is used to set the selected month from the dropdown
     def set_month(self, button, month):
         self.selected_month = month  # Store the selected month
         button.text = month  # Change button text
         self.month_button.dismiss()  # Close the dropdown
 
-
+   # This function is used to set the selected item from the dropdown
     def set_item(self, button, item):
         self.selected_item = item  # Store the selected item
         button.text = item  # Change button text
