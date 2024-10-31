@@ -35,6 +35,19 @@ class EditFinances(Screen):
             'Food', 'Household expenses', 'Travel', 'Shopping', 'Self Care', 'Other'
         ]
         
+                # Add each month as a button in the dropdown
+        for month in months:
+            month_btn = Button(text=month, size_hint_y=None, height=44)
+            month_btn.bind(on_release=lambda btn: self.set_month(main_button1, btn.text))  # Directly bind to set_month
+            self.month_button.add_widget(month_btn)
+
+        # Add each item as a button in the dropdown
+        for item in items:
+            item_btn = Button(text=item, size_hint_y=None, height=44)
+            item_btn.bind(on_release=lambda btn: self.set_item(main_button2, btn.text))  # Directly bind to set_item
+            self.item_button.add_widget(item_btn)
+
+
         # Main button to trigger the month dropdown
         main_button1 = self.create_modern_button(text='Select Month', pos_hint={'center_x': 0.5, 'center_y': 0.9})
         main_button1.bind(on_release=self.month_button.open)  # Open the dropdown when the button is pressed
