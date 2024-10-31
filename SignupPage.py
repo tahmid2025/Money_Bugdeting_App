@@ -42,6 +42,7 @@ class SignupPage(Screen):
 
            # Sign Up button with the same size as the StartPage buttons
         signup_button = Button(text="Sign Up", size_hint=(None, None), size=(400, 50), pos_hint={'center_x': 0.5, 'top': 0.3})  # Centered horizontally
+        signup_button.bind(on_press=self.update_database)
         layout.add_widget(signup_button)
 
     # This updates the database with the students details
