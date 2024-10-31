@@ -98,6 +98,50 @@ class EditFinances(Screen):
         if result1:
             student_id = result1[0]  # Get the first element of the tuple
 
+        # Check if a record for the month already exists
+        self.cursor.execute("SELECT * FROM Items WHERE student_id = ? AND month = ?", (student_id, month))
+        result2 = self.cursor.fetchone()
+
+        # This checks which item has been chosen by the user and then updates the amount accordingly 
+        if result2:
+            print("Record already exists for this month:", result2)
+            # Update the existing record with the new amount  
+            if item == 'Food':
+                self.cursor.execute("UPDATE Items SET food = food + ? WHERE student_id = ? AND month = ?", (amount, student_id, month))
+            elif item == 'Household expenses':
+                self.cursor.execute("UPDATE Items SET household_expenses = household_expenses + ? WHERE student_id = ? AND month = ?", (amount, student_id, month))
+            elif item == 'Travel':
+                self.cursor.execute("UPDATE Items SET travel = travel + ? WHERE student_id = ? AND month = ?", (amount, student_id, month))
+            elif item == 'Shopping':
+                self.cursor.execute("UPDATE Items SET shopping = shopping + ? WHERE student_id = ? AND month = ?", (amount, student_id, month))
+            elif item == 'Self Care':
+                self.cursor.execute("UPDATE Items SET self_care = self_care + ? WHERE student_id = ? AND month = ?", (amount, student_id, month))
+            elif item == 'Other':
+                self.cursor.execute("UPDATE Items SET other = other + ? WHERE student_id = ? AND month = ?", (amount, student_id, month))
+            self.conn.commit()  # Commit the changes
+
+            print(f"Record updated for {month} with student_id {student_id} for {item} by amount {amount}.")
+        else:
+            # This inserts a new record since it doesn't exist and then creates creates a record with placeholder values for the other fields (assuming they're numeric)
+            values = {
+                'food': 0,
+                'household_expenses': 0,
+                'travel': 0,
+                'shopping': 0,
+                'self_care': 0,
+                'other': 0
+            }
+            values[item.lower().replace(" ", "_")] = amount  # Set the correct field to the amount
+
+            self.cursor.execute('''INSERT INTO Items (student_id, month, food, household_expenses, travel, shopping, self_care, other)
+                                VALUES (?, ?, ?, ?, ?, ?, ?, ?)''',
+                                (student_id, month, values['food'], values['household_expenses'], 
+                                values['travel'], values['shopping'], 
+                                values['self_care'], values['other']))
+
+            self.conn.commit()  # Commit the changes
+            print(f"New record created for {month} with student_id {student_id} and {item}.")
+
 
 
     def create_modern_button(self, text, pos_hint):
