@@ -44,6 +44,15 @@ class SignupPage(Screen):
         signup_button = Button(text="Sign Up", size_hint=(None, None), size=(400, 50), pos_hint={'center_x': 0.5, 'top': 0.3})  # Centered horizontally
         layout.add_widget(signup_button)
 
+    # This updates the database with the students details
+    def update_database(self, *args):
+        name = self.student_name_box.text
+        surname = self.student_surname_box.text
+        username = self.student_username_box.text
+        password = self.student_password_box.text
+
+    
+
 
 class MyApp(App):
     def build(self):
