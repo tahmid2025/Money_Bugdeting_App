@@ -37,10 +37,12 @@ class EditFinances(Screen):
         
         # Main button to trigger the month dropdown
         main_button1 = self.create_modern_button(text='Select Month', pos_hint={'center_x': 0.5, 'center_y': 0.9})
+        main_button1.bind(on_release=self.month_button.open)  # Open the dropdown when the button is pressed
         layout.add_widget(main_button1)
 
         # Main button to trigger the item dropdown
         main_button2 = self.create_modern_button(text='Select Item', pos_hint={'center_x': 0.5, 'center_y': 0.8})
+        main_button2.bind(on_release=self.item_button.open)  # Open the dropdown when the button is pressed
         layout.add_widget(main_button2)
 
         # Label for the user to enter the amount entered
@@ -51,6 +53,24 @@ class EditFinances(Screen):
         #Submit button
         Submit_button = self.create_modern_button(text='Submit', pos_hint={'center_x': 0.5, 'top': 0.6})
         layout.add_widget(Submit_button)
+
+
+
+    def set_username(self,username):
+        self.username=username # this hold the value of the username thats been transferred by the mainmenu
+
+
+    def set_month(self, button, month):
+        self.selected_month = month  # Store the selected month
+        button.text = month  # Change button text
+        self.month_button.dismiss()  # Close the dropdown
+
+
+    def set_item(self, button, item):
+        self.selected_item = item  # Store the selected item
+        button.text = item  # Change button text
+        self.item_button.dismiss()  # Close the dropdown
+
 
 
     def create_modern_button(self, text, pos_hint):
