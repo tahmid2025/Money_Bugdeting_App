@@ -22,8 +22,6 @@ class LoginPage(Screen):
         self.cursor = self.conn.cursor()
 
 
-
-
         # Adds username label
         layout.add_widget(Label(text='Username', size_hint=(None, None), size=(200, 30), pos_hint={'center_x': 0.5, 'top': 0.9}))
 
@@ -47,6 +45,56 @@ class LoginPage(Screen):
     def check_database(self, *args):
         username = self.student_username_box.text
         password = self.student_password_box.text
+
+        # Checks if username or password fields are empty
+        if not username or not password:
+            self.show_error("Error", "Username or password cannot be empty.")
+            return
+
+        # Checks if the user exists in the database
+        self.cursor.execute("SELECT * FROM Students WHERE username = ? AND password = ?", (username, password))
+        result = self.cursor.fetchone()
+
+
+        if result:
+            # User found, login successful
+            self.switch_to_main_menu()
+        else:
+            # User not found, show error popup
+            self.show_error("Error", "Invalid username or password.")
+
+
+
+    def show_error(self, title, message):
+        # Create a layout for the popup
+        layout = BoxLayout(orientation='vertical', padding=10, spacing=10)
+        
+        # Add the error message label
+        content = Label(text=message)
+        layout.add_widget(content)
+
+        # Add a close button to the popup
+        close_button = Button(text="Close", size_hint=(None, None), size=(100, 50))
+        layout.add_widget(close_button)
+
+        # Create the popup and add the layout
+        self.popup = Popup(title=title, content=layout, size_hint=(0.6, 0.4))
+        
+        # Bind the close button to dismiss the popup
+        close_button.bind(on_press=self.popup.dismiss)
+        
+        # Open the popup
+        self.popup.open()
+
+
+
+
+    def switch_to_main_menu(self, *args):
+        # Pass the username to the main menu and switch screens
+        username = self.student_username_box.text  # Get the username from the input
+        self.manager.get_screen('main_menu').set_username(username)  # Assuming MainMenu has a set_username method
+        self.manager.current = 'main_menu'
+
 
 
 
