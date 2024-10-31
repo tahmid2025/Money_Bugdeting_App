@@ -4,6 +4,8 @@ from kivy.uix.floatlayout import FloatLayout
 from kivy.uix.label import Label
 from kivy.uix.textinput import TextInput  
 from kivy.uix.button import Button
+import sqlite3
+
 
 
 ''' THIS CLASS IS CREATED TO HELP NEW USERS TO SIGN UP TO THE PROGRAM'''
@@ -12,8 +14,11 @@ class SignupPage(Screen):
         super(SignupPage,self).__init__(**kwargs)
 
         layout=FloatLayout()
-
         self.add_widget(layout)
+
+        # Create a database connection
+        self.conn = sqlite3.connect('Students.db')
+        self.cursor = self.conn.cursor()
 
         # Name input
         layout.add_widget(Label(text="Name:", size_hint=(None, None), size=(400, 30), pos_hint={'center_x': 0.5, 'top': 0.9}))
