@@ -4,6 +4,8 @@ import sqlite3
 import plotly.graph_objects as go
 import plotly.io as pio
 from kivy.uix.image import Image
+from kivy.uix.button import Button
+
 
 
 
@@ -20,6 +22,17 @@ class ViewFinances(Screen):
         self.conn = sqlite3.connect('Students.db')
         self.cursor = self.conn.cursor()
         self.student_id=None
+
+
+         # Add a back button
+        back_button = Button(
+            text='Back',
+            size_hint=(0.1, 0.05),
+            pos_hint={'x': 0, 'y': 0.95},
+            background_color=[0, 0, 1, 1],
+            on_release=self.go_back
+        )
+        self.layout.add_widget(back_button)
 
     #Stores the username and fetches the corresponding student ID
     def set_username(self, username):
@@ -78,5 +91,10 @@ class ViewFinances(Screen):
 
         img = Image(source='expenses_chart.png', size_hint=(1, 0.95), allow_stretch=True, keep_ratio=False)  # Set size_hint to (1, 1)
         self.layout.add_widget(img)
+
+
+    def go_back(self, instance):
+        """Navigate back to the previous screen."""
+        self.manager.current = 'main_menu'  # Replace with the actual screen name
         
         

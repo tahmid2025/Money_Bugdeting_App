@@ -47,6 +47,11 @@ class EditFinances(Screen):
             item_btn.bind(on_release=lambda btn: self.set_item(main_button2, btn.text))  # Directly bind to set_item
             self.item_button.add_widget(item_btn)
 
+        #Back Button
+        back_button=self.create_modern_button(text='Back',pos_hint={'x': 0, 'y': 0.95})
+        back_button.bind(on_release=self.go_back)
+        layout.add_widget(back_button)
+
 
         # Main button to trigger the month dropdown
         main_button1 = self.create_modern_button(text='Select Month', pos_hint={'center_x': 0.5, 'center_y': 0.9})
@@ -158,6 +163,12 @@ class EditFinances(Screen):
             font_size='16sp'
         )
         return button
+    
+
+    def go_back(self, instance):
+        """Navigate back to the previous screen."""
+        self.manager.current = 'main_menu'  # Replace with the actual screen name
+
 
 
 class MyApp(App):
