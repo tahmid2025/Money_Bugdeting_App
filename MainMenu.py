@@ -14,6 +14,15 @@ class MainMenu(Screen):
         layout = FloatLayout()
         self.add_widget(layout)
 
+        # Welcome label
+        self.username_label = Label(
+            text="",
+            font_size='30sp',
+            pos_hint={'center_x': 0.5, 'top': 0.9}
+        )
+        layout.add_widget(self.username_label)
+
+
         # First Button
         first_button = self.create_modern_button('Edit finances', pos_hint={'center_x': 0.5, 'top': 0.8})
         layout.add_widget(first_button)
@@ -22,6 +31,10 @@ class MainMenu(Screen):
         second_button = self.create_modern_button('View finances', pos_hint={'center_x': 0.5, 'top': 0.65})
         layout.add_widget(second_button)
 
+    def set_username(self, username):
+        # Update the welcome message to include the username
+        self.username=username
+        self.username_label.text = f"Welcome, {username}! To Tahmid's Budgeting Program"
 
 
     #This method is used to create a more modern look to the buttons
