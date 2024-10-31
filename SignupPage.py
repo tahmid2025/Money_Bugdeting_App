@@ -52,6 +52,18 @@ class SignupPage(Screen):
         username = self.student_username_box.text
         password = self.student_password_box.text
 
+
+        # Check if any fields are empty
+        if not name or not surname or not username or not password:
+            self.show_error("Error", "All fields must be filled.")
+            return # Exit the function early if any field is empty
+        
+        #Checks if the username is are already in use
+        self.cursor.execute("SELECT * FROM Students WHERE username = ?", (username,))
+        existing_user = self.cursor.fetchone()  # Fetch one record
+
+      
+
     
 
 
