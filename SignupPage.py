@@ -66,6 +66,21 @@ class SignupPage(Screen):
         existing_user = self.cursor.fetchone()  # Fetch one record
 
 
+        if existing_user:
+            self.show_error("Error", "Username already exists.")  # Show error if username exists
+            return  # Exit early
+        
+
+        try:
+            self.cursor.execute('''INSERT INTO Students (name, surname, username, password) 
+                                   VALUES (?, ?, ?, ?)''', (name, surname, username, password))
+            self.conn.commit()  # Commits the changes
+            print("User signed up successfully!")  # Confirmation message
+            self.switch_to_main_menu()  # Switchs to the main menu after success
+        except sqlite3.Error as e:
+            self.show_error("Error", str(e))  # Displays any other database errors
+
+
 
 
     #This is the display template that is used to show error screens
@@ -89,6 +104,14 @@ class SignupPage(Screen):
         
         # Open the popup
         self.popup.open()
+
+
+    # This swithces the screen to the mainmenu and moves the entered username to the mainmenu screen
+    def switch_to_main_menu(self, *args):
+        # Switch to the 'main_menu' screen
+        username = self.student_username_box.text  # Get the username from the input
+        self.manager.get_screen('main_menu').set_username(username)  # Pass it to MainMenu
+        self.manager.current = 'main_menu'
 
       
 
