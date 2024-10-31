@@ -84,6 +84,12 @@ class EditFinances(Screen):
         button.text = item  # Change button text
         self.item_button.dismiss()  # Close the dropdown
 
+    # This function is used to update the database when submit button is clicked 
+    def update_database(self, *args):
+        month = self.selected_month
+        item = self.selected_item
+        amount = self.student_budget_box.text
+
 
 
     def create_modern_button(self, text, pos_hint):
