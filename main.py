@@ -7,6 +7,7 @@ from EditFinances import EditFinances
 from Login import LoginPage
 from MainMenu import MainMenu
 from SignupPage import SignupPage
+from ViewFinances import ViewFinances
 
 
 
@@ -61,6 +62,8 @@ class MyApp(App):
         sm.add_widget(LoginPage(name='login'))
         sm.add_widget(MainMenu(name='main_menu'))
         sm.add_widget(EditFinances(name='Edit_Finances'))
+        sm.add_widget(ViewFinances(name='View_Finances'))
+
 
         
 

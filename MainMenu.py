@@ -30,6 +30,7 @@ class MainMenu(Screen):
 
         # Second Button
         second_button = self.create_modern_button('View finances', pos_hint={'center_x': 0.5, 'top': 0.65})
+        second_button.bind(on_press=self.switch_to_View_Finances)
         layout.add_widget(second_button)
 
     def set_username(self, username):
@@ -60,6 +61,13 @@ class MainMenu(Screen):
         username = self.username # Get the username from the input
         self.manager.get_screen('Edit_Finances').set_username(username)
         self.manager.current = 'Edit_Finances'
+
+
+    def switch_to_View_Finances(self, *args):
+        # Switch to the 'Edit_Finances' screen
+        username = self.username # Get the username from the input
+        self.manager.get_screen('View_Finances').set_username(username)
+        self.manager.current = 'View_Finances'
 
 
 
