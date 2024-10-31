@@ -40,7 +40,13 @@ class LoginPage(Screen):
 
         # Adds login button
         login_button = Button(text="Login", size_hint=(None, None), size=(200, 50), pos_hint={'center_x': 0.5, 'top': 0.675})
+        login_button.bind(on_press=self.check_database)
         layout.add_widget(login_button)
+
+    #This checks the database for the exisitng users
+    def check_database(self, *args):
+        username = self.student_username_box.text
+        password = self.student_password_box.text
 
 
 
