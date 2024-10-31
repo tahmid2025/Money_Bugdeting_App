@@ -65,6 +65,7 @@ class EditFinances(Screen):
 
         #Submit button
         Submit_button = self.create_modern_button(text='Submit', pos_hint={'center_x': 0.5, 'top': 0.6})
+        Submit_button.bind(on_press=self.update_database)  # Bind submit button to the method
         layout.add_widget(Submit_button)
 
 
