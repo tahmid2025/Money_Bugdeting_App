@@ -5,6 +5,9 @@ from kivy.uix.label import Label
 from kivy.uix.textinput import TextInput  
 from kivy.uix.button import Button
 import sqlite3
+from kivy.uix.popup import Popup
+from kivy.uix.boxlayout import BoxLayout
+
 
 
 
@@ -61,6 +64,31 @@ class SignupPage(Screen):
         #Checks if the username is are already in use
         self.cursor.execute("SELECT * FROM Students WHERE username = ?", (username,))
         existing_user = self.cursor.fetchone()  # Fetch one record
+
+
+
+
+    #This is the display template that is used to show error screens
+    def show_error(self, title, message):
+        # Create a layout for the popup
+        layout = BoxLayout(orientation='vertical', padding=10, spacing=10)
+        
+        # Add the error message label
+        content = Label(text=message)
+        layout.add_widget(content)
+
+        # Add a close button to the popup
+        close_button = Button(text="Close", size_hint=(None, None), size=(100, 50))
+        layout.add_widget(close_button)
+
+        # Create the popup and add the layout
+        self.popup = Popup(title=title, content=layout, size_hint=(0.6, 0.4))
+        
+        # Bind the close button to dismiss the popup
+        close_button.bind(on_press=self.popup.dismiss)
+        
+        # Open the popup
+        self.popup.open()
 
       
 
