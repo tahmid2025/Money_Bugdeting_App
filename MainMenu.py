@@ -25,6 +25,7 @@ class MainMenu(Screen):
 
         # First Button
         first_button = self.create_modern_button('Edit finances', pos_hint={'center_x': 0.5, 'top': 0.8})
+        first_button.bind(on_press=self.switch_to_Edit_Finances)
         layout.add_widget(first_button)
 
         # Second Button
@@ -52,6 +53,13 @@ class MainMenu(Screen):
         )
 
         return button
+    
+    # This method is used to swtich to the edit finances page
+    def switch_to_Edit_Finances(self, *args):
+        # Switch to the 'Edit_Finances' screen
+        username = self.username # Get the username from the input
+        self.manager.get_screen('Edit_Finances').set_username(username)
+        self.manager.current = 'Edit_Finances'
 
 
 
