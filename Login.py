@@ -4,6 +4,9 @@ from kivy.uix.floatlayout import FloatLayout
 from kivy.uix.label import Label
 from kivy.uix.textinput import TextInput  
 from kivy.uix.button import Button
+import sqlite3
+from kivy.uix.popup import Popup
+from kivy.uix.boxlayout import BoxLayout
 
 '''THIS CLASS IS CREATED TO ALLOW EXISTING USERS TO LOG INTO THEIR ACCOUNTS'''
 class LoginPage(Screen):
@@ -12,8 +15,14 @@ class LoginPage(Screen):
 
         # Create a FloatLayout
         layout = FloatLayout()
-
         self.add_widget(layout)
+
+        # Create a database connection
+        self.conn = sqlite3.connect('Students.db')
+        self.cursor = self.conn.cursor()
+
+
+
 
         # Adds username label
         layout.add_widget(Label(text='Username', size_hint=(None, None), size=(200, 30), pos_hint={'center_x': 0.5, 'top': 0.9}))
